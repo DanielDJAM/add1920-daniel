@@ -36,8 +36,8 @@ elsif ARGV[0] == '--status' and ARGV[1]
   lines = filename.split("\n")
   lines.each do |line|
     fields = line.split(":")
-     param1 = `whereis #{fields[0]} |grep bin |wc -l`.chop
-     if param1 == "1"
+    param1 = `whereis #{fields[0]} |grep bin |wc -l`.chop
+    if param1 == "1"
       puts "#{fields[0]} = Está instalado"
 
     elsif param1 == "0"
