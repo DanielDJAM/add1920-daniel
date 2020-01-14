@@ -2,10 +2,8 @@
 
 puts 'Bienvenido a softwarectl'
 
-filename = ARGV[1]
-
-if ARGV[0] == ''
-  "Recomendamos el uso de --help"
+if ARGV[0] == nil
+  puts "Recomendamos el uso de --help"
 elsif ARGV[0] == '--help'
   puts '
 Usage:
@@ -33,31 +31,35 @@ elsif ARGV[0] == '--version'
   version 0.01a
   '
 elsif ARGV[0] == '--status' and ARGV[1]
-  filename_splited = filename.split("\n")
-  filename_splited2 = filename_splited.split(":")
-  para1 = system("whereis #{filename_splited2[0]} |grep bin |wc -l")
-  if para1 == 1
-  puts 'Está instalado'
-  elsif
-    puts 'No está instalado'
-elsif ARGV[0] == '--run'
-  para1 = system('whoami')
-  if para1 == 'root'
-    while loop = true
-      puts '
-      1. Instalar
-      2. Desinstalar
-      3. Salir
 
-      Elige (1), (2) o (3).
-      '
-      intro1 = gets.chop
-      if intro1 == 1
-        system("zypper install -y #{ARGV[1]}")
-      elsif intro1 == 2
-        system("zypper remove -y #{ARGV[1]}")
-      elsif intro == 3
-        loop = false
-  elsif
+  filename = `cat #{ARGV[1]}`
+  lines = filename.split("\n")
+  lines.each do |line|
+    fields = line.split(":")
+     param1 = `whereis #{fields[0]} |grep bin |wc -l`.chop
+     if param1 == "1"
+      puts "#{fields[0]} = Está instalado"
+
+    elsif param1 == "0"
+       puts "#{fields[0]} = No está instalado"
+
+     end
+  end
+
+elsif ARGV[0] == '--run'
+
+  param1 = `whoami`.chop
+  if param1 == 'root'
+    filename = `cat #{ARGV[1]}`
+    lines = filename.split("\n")
+    lines.each do |line|
+      fields = line.split(":")
+    puts "Instalando paquetes..."
+        `zypper install -y #{fields[0]}`
+    puts "Eliminando paquetes..."
+        `zypper remove -y #{fields[0]}`
+    end
+  elsif param1 != 'root'
     puts "Usted no tiene permisos de administrador"
-    exit 1
+  end
+end
