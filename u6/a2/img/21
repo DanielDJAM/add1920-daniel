@@ -1,0 +1,88 @@
+daniel@master18g:/srv/salt/base/users> sudo salt '*' state.apply users
+[sudo] password for root: 
+minion18g:
+----------
+          ID: koji18
+    Function: user.present
+      Result: True
+     Comment: New user koji18 created
+     Started: 16:33:24.952816
+    Duration: 129.561 ms
+     Changes:   
+              ----------
+              fullname:
+                  koji18
+              gid:
+                  100
+              groups:
+                  - users
+              home:
+                  /home/koji18
+              homephone:
+              name:
+                  koji18
+              other:
+              passwd:
+                  x
+              roomnumber:
+              shell:
+                  /bin/bash
+              uid:
+                  2001
+              workphone:
+----------
+          ID: drinfierno18
+    Function: user.present
+      Result: True
+     Comment: New user drinfierno18 created
+     Started: 16:33:25.082695
+    Duration: 55.389 ms
+     Changes:   
+              ----------
+              fullname:
+                  drinfierno18
+              gid:
+                  100
+              groups:
+                  - users
+              home:
+                  /home/drinfierno18
+              homephone:
+              name:
+                  drinfierno18
+              other:
+              passwd:
+                  x
+              roomnumber:
+              shell:
+                  /bin/bash
+              uid:
+                  2002
+              workphone:
+----------
+          ID: mazingerz
+    Function: group.present
+      Result: True
+     Comment: New group mazingerz created
+     Started: 16:33:25.139066
+    Duration: 80.966 ms
+     Changes:   
+              ----------
+              gid:
+                  2020
+              members:
+                  - koji18
+                  - drinfierno18
+              name:
+                  mazingerz
+              passwd:
+                  x
+
+Summary for minion18g
+------------
+Succeeded: 3 (changed=3)
+Failed:    0
+------------
+Total states run:     3
+Total run time: 265.916 ms
+daniel@master18g:/srv/salt/base/users> 
