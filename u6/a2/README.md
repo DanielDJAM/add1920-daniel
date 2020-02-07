@@ -22,7 +22,7 @@ Hay varias herramientas conocidas del tipo gestor de infrastructura como Puppet,
 * Ir a la MV1
 * `zypper install salt-master`, instalar el software del Máster.
 
-![01](01.png)
+![01](img/01.png)
 
 * Modificar `/etc/salt/master` para configurar nuestro Máster con:
 ```
@@ -32,7 +32,7 @@ file_roots:
     - /srv/salt
 ```
 
-![02](02.png)
+![02](img/02.png)
 
 * `systemctl enable salt-master.service`, activiar servicio en el arranque del sistema.
 * `systemctl start salt-master.service`, iniciar servicio.
@@ -44,7 +44,7 @@ Unaccepted Keys:
 Rejected Keys:
 ```
 
-![03](03.png)
+![03](img/03.png)
 
 ---
 # 4. Minion
@@ -55,23 +55,23 @@ Los Minios son los equipos que van a estar bajo el control del Máster.
 
 * `zypper install salt-minion`, instalar el software del agente (minion).
 
-![04](04.png)
+![04](img/04.png)
 
 * Modificar `/etc/salt/minion` para definir quien será nuestro Máster:
 ```
 master: 172.19.18.31
 ```
 
-![05](05.png)
+![05](img/05.png)
 
 * `systemctl enable salt-minion.service`, activar Minion en el arranque del sistema.
 * `systemctl start salt-minion.service`, iniciar el servico del Minion.
 
-![06](06.png)
+![06](img/06.png)
 
 * Comprobar que  que no tenemos instalado `apache2` en el Minion.
 
-![07](07.png)
+![07](img/07.png)
 
 ## 4.2 Aceptación desde el Master
 
@@ -91,12 +91,12 @@ minion18g
 Rejected Keys:
 ```
 
-![08](08.png)
+![08](img/08.png)
 
 * `salt-key -a minion18g`, para que el Máster acepte a dicho Minion.
 * `salt-key -L`, comprobamos.
 
-![09](09.png)
+![09](img/09.png)
 
 ## 4.4 Comprobamos conectividad
 
@@ -110,7 +110,7 @@ minion18g:
     True
 ```
 
-![10](10.png)
+![10](img/10.png)
 
 
 > El símbolo `'*'` representa a todos los minions aceptados. Se puede especificar un minion o conjunto de minios concretos.
@@ -130,7 +130,7 @@ Vamos a crear directorios para guardar lo estados de Salt. Los estados de Salt s
 Ir a la MV Máster:
 * Crear directorios `/srv/salt/base` y `/srv/salt/devel`.
 
-![11](11.png)
+![11](img/11.png)
 
 * Crear archivo `/etc/salt/master.d/roots.conf` con el siguiente contenido:
 ```
@@ -141,11 +141,11 @@ file_roots:
     - /srv/salt/devel
 ```
 
-![12](12.png)
+![12](img/12.png)
 
 * Reiniciar el servicio del Máster.
 
-![13](13.png)
+![13](img/13.png)
 
 Hemos creado los directorios para:
 * base = para guardar nuestros estados.
@@ -167,7 +167,7 @@ apache_service:
     - enable: True
 ```
 
-![14](14.png)
+![14](img/14.png)
 
 Entendamos las definiciones:
 * Nuestro nuevo estado se llama `apache` porque el directorio donde están las definiciones se llama `srv/salt/base/apache`.
@@ -185,7 +185,7 @@ base:
     - apache
 ```
 
-![15](15.png)
+![15](img/15.png)
 
 ## 5.4 Comprobar: estados definidos
 
@@ -195,7 +195,7 @@ minion18g:
     - apache
 ```
 
-![16](16.png)
+![16](img/16.png)
 
 ## 5.5 Aplicar el nuevo estado
 
@@ -203,11 +203,11 @@ Ir al Master:
 * Consultar los estados en detalle y verificar que no hay errores en las definiciones.
     * `salt '*' state.show_lowstate`
 
-![17](17.png)
+![17](img/17.png)
 
     * `salt '*' state.show_highstate`,
 
-![18](18.png)
+![18](img/18.png)
 
 * `salt '*' state.apply apache`, para aplicar el nuevo estado en todos los minions. OJO: Esta acción puede tardar un tiempo.
 
@@ -300,7 +300,7 @@ Vamos a crear un estado llamado `users` que nos servirá para crear un grupo y u
     * Grupo `mazingerz`
     * Usuarios `koji18`, `drinfierno18` dentro de dicho grupo.
 
-![20](20.png)
+![20](img/20.png)
 
 * Aplicar el estado.
 
@@ -400,7 +400,7 @@ daniel@master18g:/srv/salt/base/users>
 
 * Crear estado `drectories` para crear las carpetas `private` (700), `public` (755) y `group` (750) en el home del usuario `koji`.
 
-![22](22.png)
+![22](img/22.png)
 
 * Aplicar el estado.
 
@@ -458,10 +458,10 @@ daniel@master18g:/srv/salt/base/directories>
 * Crear MV3 con SO Windows (minion18w)
 * Instalar `salt-minion` en MV3.
 
-![24](24.png)
+![24](img/24.png)
 
 * Ir a MV1(Máster) y aceptar al minion.
 
-![25](25.png)
+![25](img/25.png)
 
-![26](26.png)
+![26](img/26.png)
