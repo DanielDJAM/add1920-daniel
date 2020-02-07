@@ -1,0 +1,44 @@
+daniel@master18g:/srv/salt/base/directories> sudo salt '*' state.apply directories
+minion18g:
+----------
+          ID: /home/koji18/private
+    Function: file.directory
+      Result: True
+     Comment: Directory /home/koji18/private updated
+     Started: 16:37:00.945341
+    Duration: 7.17 ms
+     Changes:   
+              ----------
+              /home/koji18/private:
+                  New Dir
+----------
+          ID: /home/koji18/public
+    Function: file.directory
+      Result: True
+     Comment: Directory /home/koji18/public updated
+     Started: 16:37:00.952640
+    Duration: 0.95 ms
+     Changes:   
+              ----------
+              /home/koji18/public:
+                  New Dir
+----------
+          ID: /home/koji18/group
+    Function: file.directory
+      Result: True
+     Comment: Directory /home/koji18/group updated
+     Started: 16:37:00.953683
+    Duration: 0.949 ms
+     Changes:   
+              ----------
+              /home/koji18/group:
+                  New Dir
+
+Summary for minion18g
+------------
+Succeeded: 3 (changed=3)
+Failed:    0
+------------
+Total states run:     3
+Total run time:   9.069 ms
+daniel@master18g:/srv/salt/base/directories> 

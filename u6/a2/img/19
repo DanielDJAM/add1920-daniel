@@ -1,0 +1,67 @@
+daniel@master18g:/srv/salt> sudo salt '*' state.apply apache
+minion18g:
+----------
+          ID: install_apache
+    Function: pkg.installed
+      Result: True
+     Comment: The following packages were installed/updated: apache2
+     Started: 16:12:23.603334
+    Duration: 34613.524 ms
+     Changes:   
+              ----------
+              apache2:
+                  ----------
+                  new:
+                      2.4.33-lp150.2.23.1
+                  old:
+              apache2-prefork:
+                  ----------
+                  new:
+                      2.4.33-lp150.2.23.1
+                  old:
+              apache2-utils:
+                  ----------
+                  new:
+                      2.4.33-lp150.2.23.1
+                  old:
+              git-web:
+                  ----------
+                  new:
+                      2.16.4-lp150.2.9.1
+                  old:
+              libbrotlicommon1:
+                  ----------
+                  new:
+                      1.0.2-lp150.1.3
+                  old:
+              libbrotlienc1:
+                  ----------
+                  new:
+                      1.0.2-lp150.1.3
+                  old:
+              system-user-wwwrun:
+                  ----------
+                  new:
+                      20170617-lp150.3.34
+                  old:
+----------
+          ID: apache_service
+    Function: service.running
+        Name: apache2
+      Result: True
+     Comment: Service apache2 has been enabled, and is running
+     Started: 16:13:02.493273
+    Duration: 372.029 ms
+     Changes:   
+              ----------
+              apache2:
+                  True
+
+Summary for minion18g
+------------
+Succeeded: 2 (changed=2)
+Failed:    0
+------------
+Total states run:     2
+Total run time:  34.986 s
+daniel@master18g:/srv/salt> 
