@@ -1,0 +1,2 @@
+nmap:install
+tree:remove
