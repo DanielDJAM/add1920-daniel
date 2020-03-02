@@ -41,7 +41,7 @@
 
  - Funcionamiento del Bot en video.
 
- [![](video.jpg)](https://youtu.be/-NF87V4uuE0 "Bot_Telegram")
+ [!][(video.jpg)](https://youtu.be/-NF87V4uuE0 "Bot_Telegram")
 
 ## 2.4 Entrega
 
