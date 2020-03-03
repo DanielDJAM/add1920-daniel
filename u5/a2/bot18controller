@@ -1,0 +1,5 @@
+status = `systemctl status bot18 | grep Active`.split
+
+if status[1] == "failed"
+  `systemctl restart bot18`
+end
